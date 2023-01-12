@@ -270,6 +270,10 @@ body::after {
      object-fit: contain;
 }
 
+.header {
+  background: #fff;
+}
+
 .header__container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -278,7 +282,6 @@ body::after {
       -ms-flex-align: center;
           align-items: center;
   padding: 0.625rem;
-  background: #fff;
 }
 
 .main-header {
@@ -344,7 +347,7 @@ body::after {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: #fff;
+  background: rgb(248, 248, 248);
 }
 
 .search-header__input {
@@ -471,7 +474,7 @@ body::after {
 }
 
 .search-container[class*=active] {
-  background: #fff;
+  padding: 0.625rem;
 }
 
 .search-container[class*=active] ._dynamic_adapt_ {
@@ -485,6 +488,7 @@ body::after {
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
   background: transparent;
+  padding: 0;
 }
 
 .search-container ._dynamic_adapt_ {
@@ -495,6 +499,7 @@ body::after {
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
   width: 100%;
+  background: rgb(248, 248, 248);
 }
 
 .search-container ._dynamic_adapt_ input {
@@ -506,7 +511,7 @@ body::after {
 }
 
 @media (min-width: 47.99875em) {
-  .search-container {
+  .search-container[class*=active] {
     padding: 0;
   }
 }
