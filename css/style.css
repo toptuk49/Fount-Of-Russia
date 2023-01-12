@@ -470,6 +470,16 @@ body::after {
   color: inherit;
 }
 
+.search-container[class*=active] {
+  background: #fff;
+}
+
+.search-container[class*=active] ._dynamic_adapt_ {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .search-container {
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -489,16 +499,6 @@ body::after {
 
 .search-container ._dynamic_adapt_ input {
   width: 100%;
-}
-
-._active {
-  background: #fff;
-}
-
-._active ._dynamic_adapt_ {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .icon-menu {
