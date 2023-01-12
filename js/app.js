@@ -60,11 +60,6 @@
             }
         }));
     }
-    function functions_FLS(message) {
-        setTimeout((() => {
-            if (window.FLS) console.log(message);
-        }), 0);
-    }
     class Popup {
         constructor(options) {
             let config = {
@@ -136,7 +131,6 @@
             this.options.init ? this.initPopups() : null;
         }
         initPopups() {
-            this.popupLogging(`Проснулся`);
             this.eventsPopup();
         }
         eventsPopup() {
@@ -237,7 +231,6 @@
                             popup: this
                         }
                     }));
-                    this.popupLogging(`Открыл попап`);
                 } else this.popupLogging(`Ой ой, такого попапа нет.Проверьте корректность ввода. `);
             }
         }
@@ -272,7 +265,6 @@
             setTimeout((() => {
                 this._focusTrap();
             }), 50);
-            this.popupLogging(`Закрыл попап`);
         }
         _getHash() {
             if (this.options.hashSettings.location) this.hash = this.targetOpen.selector.includes("#") ? this.targetOpen.selector : this.targetOpen.selector.replace(".", "#");
@@ -304,9 +296,6 @@
         _focusTrap() {
             const focusable = this.previousOpen.element.querySelectorAll(this._focusEl);
             if (!this.isOpen && this.lastFocusEl) this.lastFocusEl.focus(); else focusable[0].focus();
-        }
-        popupLogging(message) {
-            this.options.logging ? functions_FLS(`[Попапос]: ${message}`) : null;
         }
     }
     modules_flsModules.popup = new Popup({});
