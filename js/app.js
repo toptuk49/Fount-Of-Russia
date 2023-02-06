@@ -382,7 +382,7 @@
     }
     (() => {
         "use strict";
-        const modules_flsModules = {};
+        const flsModules = {};
         function isWebp() {
             function testWebP(callback) {
                 let webP = new Image;
@@ -680,7 +680,7 @@
                 if (!this.isOpen && this.lastFocusEl) this.lastFocusEl.focus(); else focusable[0].focus();
             }
         }
-        modules_flsModules.popup = new Popup({});
+        flsModules.popup = new Popup({});
         function ssr_window_esm_isObject(obj) {
             return null !== obj && "object" === typeof obj && "constructor" in obj && obj.constructor === Object;
         }
@@ -4219,15 +4219,6 @@
             class_loaded: "_lazy-loaded",
             use_native: true
         });
-        let addWindowScrollEvent = false;
-        setTimeout((() => {
-            if (addWindowScrollEvent) {
-                let windowScroll = new Event("windowScroll");
-                window.addEventListener("scroll", (function(e) {
-                    document.dispatchEvent(windowScroll);
-                }));
-            }
-        }), 0);
         function DynamicAdapt(type) {
             this.type = type;
         }
@@ -4353,9 +4344,21 @@
                     true === document.querySelector("#ans5_2").checked ? correct++ : correct;
                     document.querySelector(".result-test__header").innerHTML = "Вы успешно завершили тест";
                     document.querySelector(".result-test__resume").innerHTML = 'Тест <span class="result-test__span"></span>';
+                    let correct_text = "";
+                    if (2 === correct || 3 === correct || 4 === correct) correct_text = "ответа верны"; else if (1 === correct) correct_text = "ответ верный"; else if (5 === correct || 0 === correct) correct_text = "ответов верны";
                     let answers_text = "";
-                    if (2 === correct || 3 === correct || 4 === correct) answers_text = "ответа верны"; else if (1 === correct) answers_text = "ответ верный"; else if (5 === correct || 0 === correct) answers_text = "ответов верны";
-                    document.querySelector(".result-test__given").innerHTML = `Дано ${answers} <b>ответов</b>, из них ${correct} ` + answers_text;
+                    let answers_pretext = "";
+                    if (2 === answers || 3 === answers || 4 === answers) {
+                        answers_pretext = "Дано";
+                        answers_text = "ответа";
+                    } else if (1 === answers) {
+                        answers_pretext = "Дан";
+                        answers_text = "ответ";
+                    } else if (5 === answers || 0 === answers) {
+                        answers_pretext = "Дано";
+                        answers_text = "ответов";
+                    }
+                    document.querySelector(".result-test__given").innerHTML = `${answers_pretext} ${answers} <b>${answers_text}</b>, из них ${correct} ${correct_text}`;
                     if (correct >= 4) {
                         document.querySelector(".result-test__span").classList.add("result-test__span-passed");
                         document.querySelector(".result-test__span").innerHTML = "пройден.";
@@ -4373,9 +4376,12 @@
                 } else if ("answer2" === e.target.name) pagination_bullets[1].classList.add("swiper-pagination-bullet-done"); else if ("answer3" === e.target.name) pagination_bullets[2].classList.add("swiper-pagination-bullet-done"); else if ("answer4" === e.target.name) pagination_bullets[3].classList.add("swiper-pagination-bullet-done"); else if ("answer5" === e.target.name) pagination_bullets[4].classList.add("swiper-pagination-bullet-done");
             }
             let answer_list = document.querySelectorAll(".answers-test__item input");
-            for (let i = 0; i < answer_list.length; i++) answer_list[i].addEventListener("click", checkRadio);
+            for (let i = 0; i < answer_list.length; i++) {
+                answer_list[i].addEventListener("click", checkRadio);
+                answer_list[i].checked = false;
+            }
         };
-        window["FLS"] = true;
+        window["FLS"] = false;
         isWebp();
         menuInit();
     })();

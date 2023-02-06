@@ -1253,6 +1253,7 @@ body::after {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  padding: 0 0.625rem;
 }
 
 @supports (font-size: clamp( 1.125rem , 1.0340909091rem  +  0.4545454545vw , 1.375rem )) {
